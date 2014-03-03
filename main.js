@@ -112,9 +112,3 @@ function CDR(p){
 
 console.log('CAR(CONS(n0)(FALSE)):', CAR(CONS(N0)(CONS(N1)(FALSE))));
 console.log('CDR(CONS(n0)(FALSE)):', CDR(CONS(N0)(CONS(N1)(FALSE))));
-
-function MAP(l){
-    return function(f){
-        return ;
-    };
-}

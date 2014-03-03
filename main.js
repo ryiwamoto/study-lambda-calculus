@@ -32,22 +32,21 @@ function PLUS(m){
 
 console.log('PLUS(N2)(N1):', PLUS(N2)(N1));
 
-//true
+//TRUE := λx y. x
 function TRUE(t){
     return function(f){
         return t;
     };
 }
 
-//false
+//FALSE := λx y. y
 function FALSE(t){
     return function(f){
         return f;
     };
 }
 
-//if c then x else y
-console.log('IF(TRUE)(TRUE)(FALSE):', IF(TRUE)(TRUE)(FALSE));
+//IFTHENELSE := λp x y. p x y
 function IF(c){
     return function(x){
         return function(y){
@@ -55,15 +54,16 @@ function IF(c){
         };
     };
 }
+console.log('IF(TRUE)(TRUE)(FALSE):', IF(TRUE)(TRUE)(FALSE));
 
-
-//NOT T = F, NOT F = T
+//NOT := λp. p FALSE TRUE
 function NOT(b){
     return b(FALSE)(TRUE);
 }
 console.log('NOT(TRUE):', NOT(TRUE));
 console.log('NOT(FALSE):', NOT(FALSE));
 
+//AND := λp q. p q FALSE
 function AND(x){
     return function(y){
         return x(y)(FALSE);
@@ -74,6 +74,7 @@ console.log('AND(TRUE)(FALSE):', AND(TRUE)(FALSE));
 console.log('AND(FALSE)(TRUE):', AND(FALSE)(TRUE));
 console.log('AND(FALSE)(FALSE):', AND(FALSE)(FALSE));
 
+//OR := λp q. p TRUE q
 function OR(x){
     return function(y){
         return x(TRUE)(y);
@@ -84,6 +85,7 @@ console.log('OR(TRUE)(FALSE):', OR(TRUE)(FALSE));
 console.log('OR(FALSE)(TRUE):', OR(FALSE)(TRUE));
 console.log('OR(FALSE)(FALSE):', OR(FALSE)(FALSE));
 
+//XOR := λp q. p (NOT q) q
 function XOR(x){
     return function(y){
         return x(NOT(y))(y);
@@ -94,6 +96,7 @@ console.log('XOR(TRUE)(FALSE):', XOR(TRUE)(FALSE));
 console.log('XOR(FALSE)(TRUE):', XOR(FALSE)(TRUE));
 console.log('XOR(FALSE)(FALSE):', XOR(FALSE)(FALSE));
 
+//CONS := λx xs. λc. c x xs
 function CONS(s){
     return function(b){
         return function(f){
